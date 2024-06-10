@@ -1,10 +1,12 @@
 package main
 
 import (
-"fmt"
-"io"
-"net"
-"os"
+	"fmt"
+	"io"
+	"net"
+	"os"
+
+	"github.com/dylt-dev/pubbo/cmd"
 )
 
 func pub (filePath string, conn net.Conn) {
@@ -53,3 +55,15 @@ func main () {
 		pub(filePath, conn)
 	}
 }
+
+func Run () int {
+	rootCmd := cmd.createRootCommand()
+	err := rootCmd.Execute()
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		return 1
+	}
+
+	return 0
+}
+
