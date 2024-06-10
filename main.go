@@ -2,30 +2,14 @@ package main
 
 import (
 	"fmt"
-	"io"
-	"net"
 	"os"
 
-	"github.com/dylt-dev/pubbo/cmd"
+	"pubbo/cmd"
 )
 
-func pub (filePath string, conn net.Conn) {
-	f, err := os.Open(filePath)
-	if err != nil {
-		fmt.Println("error opening file")
-		os.Exit(1)
-	}
-	defer f.Close()
-	defer func (conn net.Conn) {
-		fmt.Println("Closing connection ...")
-		conn.Close()
-	}(conn)
-	io.Copy(conn, f)
-}
-
-
 func main () {
-	filePath := os.Args[1]
+/*
+	filePath := s.Args[1]
 	sockPath := os.Args[2]
 	err := os.RemoveAll(sockPath)
 	if err != nil {
@@ -54,10 +38,12 @@ func main () {
 		}
 		pub(filePath, conn)
 	}
+*/
+	os.Exit(Run())
 }
 
 func Run () int {
-	rootCmd := cmd.createRootCommand()
+	rootCmd := cmd.CreateRootCommand()
 	err := rootCmd.Execute()
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
