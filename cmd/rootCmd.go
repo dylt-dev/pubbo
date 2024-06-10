@@ -16,18 +16,17 @@ func CreateRootCommand() *cobra.Command {
 		Long: "Publish a file & make it availble on a Unix socket",
 		RunE: runCmd,
 	}
-
-	cmd.Flags().String("filePath", "", "")
-	cmd.Flags().String("socketPath", "", "")
-	cmd.MarkFlagRequired("filePath")
-	cmd.MarkFlagRequired("socketPath")
+	cmd.Flags().String("file-path", "", "")
+	cmd.Flags().String("socket-path", "", "")
+	cmd.MarkFlagRequired("file-path")
+	cmd.MarkFlagRequired("socket-path")
 	return cmd
 }
 
 func runCmd (cmd *cobra.Command, args []string) error {
 	fmt.Println("hello")
-	filePath, _ := cmd.Flags().GetString("filePath")
-	socketPath, _ := cmd.Flags().GetString("socketPath")
+	filePath, _ := cmd.Flags().GetString("file-path")
+	socketPath, _ := cmd.Flags().GetString("socket-path")
 	fmt.Printf("filePath=%s\n", filePath)
 	fmt.Printf("socketPath=%s\n", socketPath)
 
