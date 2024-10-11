@@ -28,6 +28,8 @@ jobs:
           distribution: goreleaser
           version: latest
           args: release --clean
+          checksum:
+            split: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GOPRIVATE: github.com/dylt-dev
