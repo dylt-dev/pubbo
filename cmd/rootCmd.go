@@ -24,11 +24,9 @@ func CreateRootCommand() *cobra.Command {
 }
 
 func runCmd (cmd *cobra.Command, args []string) error {
-	fmt.Println("hello")
 	filePath, _ := cmd.Flags().GetString("file-path")
 	socketPath, _ := cmd.Flags().GetString("socket-path")
-	fmt.Printf("filePath=%s\n", filePath)
-	fmt.Printf("socketPath=%s\n", socketPath)
+	fmt.Printf("Pubbo'ing %s at %s ...\n", filePath, socketPath)
 
 	err := os.RemoveAll(socketPath)
 	if err != nil {
@@ -55,6 +53,7 @@ func runCmd (cmd *cobra.Command, args []string) error {
 			fmt.Println("Error getting connection")
 			os.Exit(1)
 		}
+		fmt.Printf("Connection received. Sending content at %s ...\n", filePath)
 		pub(filePath, conn)
 	}
 }
